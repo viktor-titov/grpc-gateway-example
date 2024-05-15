@@ -1,0 +1,4 @@
+version: v1
+directories:
+  - proto/grpc-gateway-example
+  - proto/third_party

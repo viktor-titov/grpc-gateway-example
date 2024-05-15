@@ -1,0 +1,20 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/viktor-titov/grpc-gateway-example/client/internal
+    except:
+      - github.com/thirdparty/proto
+plugins:
+  - plugin: go
+    # Это каталог относительно рабочей директории buf, а не самого файла
+    out: ./client/internal
+    opt:
+      # Здесь мы не можем опираться на имя go-модуля, так как он в proto файлах задан для сервера.
+      # Поэтому просто сложим куда-то относительно рабочей директории buf.
+      - paths=source_relative
+  - plugin: go-grpc
+    out: ./client/internal
+    opt:
+      - paths=source_relative
+      - require_unimplemented_servers=false 

@@ -1,0 +1,4 @@
+version: v1
+name: github.com/viktor-titov/grpc-gateway-example
+deps:
+  - github.com/thirdparty/proto
