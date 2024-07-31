@@ -20,12 +20,15 @@ func NewClient(connection *grpc.ClientConn) (*Client, error) {
 
 func (c *Client) SayHello(
 	ctx context.Context,
-	request greetingv1.SayHelloRequest,
+	name string,
 ) (*greetingv1.SayHelloResponse, error) {
+	request := greetingv1.SayHelloRequest{
+		Name: name,
+	}
 	res, err := c.greetingClient.SayHello(ctx, &request)
 
 	if err != nil {
-		return nil, errors.Wrap("call SayHello method")
+		return nil, errors.Wrap(err, "call SayHello method")
 	}
 
 	return res, nil
